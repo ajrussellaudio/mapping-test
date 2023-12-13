@@ -1,0 +1,58 @@
+{
+  "Coords": {
+    "Africa": [
+      {
+        "latitude": -1.292066,
+        "longitude": 36.821945
+      },
+      {
+        "latitude": -1.292066,
+        "longitude": 36.82
+      },
+      {
+        "latitude": -1.29,
+        "longitude": 36.82
+      },
+      {
+        "latitude": -1.29,
+        "longitude": 36.821945
+      }
+    ],
+    "Europe": [
+      {
+        "latitude": 48.856613,
+        "longitude": 2.352222
+      },
+      {
+        "latitude": 48.856613,
+        "longitude": 2.35
+      },
+      {
+        "latitude": 48.854,
+        "longitude": 2.35
+      },
+      {
+        "latitude": 48.854,
+        "longitude": 2.352222
+      }
+    ],
+    "NorthAmerica": [
+      {
+        "latitude": 37.773972,
+        "longitude": -122.431297
+      },
+      {
+        "latitude": 37.773972,
+        "longitude": -122.43
+      },
+      {
+        "latitude": 37.77,
+        "longitude": -122.43
+      },
+      {
+        "latitude": 37.77,
+        "longitude": -122.431297
+      }
+    ]
+  }
+}
