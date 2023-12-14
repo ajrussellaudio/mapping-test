@@ -4,7 +4,13 @@ import { useCoords } from "./useCoords";
 import { server } from "../mocks/server";
 import { HttpResponse, http } from "msw";
 
-const client = new QueryClient();
+const client = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+});
 
 const wrapper = ({ children }: { children: React.ReactNode }) => (
   <QueryClientProvider client={client}>{children}</QueryClientProvider>
@@ -21,7 +27,7 @@ describe("useCoords", () => {
               { latitude: 2, longitude: 2 },
             ],
           },
-        } satisfies CoordinatesResponseDto);
+        } satisfies CoordinatesSuccessResponseDto);
       }),
     );
     const { result } = renderHook(useCoords, { wrapper });
@@ -37,6 +43,27 @@ describe("useCoords", () => {
           ],
         },
       ]);
+    });
+  });
+
+  it("handles an error response", async () => {
+    server.use(
+      http.post("https://staging-mortar-tech-test-2im2.encr.app/coordinates", () => {
+        return HttpResponse.json(
+          {
+            code: "unknown",
+            message: "could not do the thing",
+            details: null,
+          } satisfies CoordinatesFailureResponseDto,
+          { status: 404 },
+        );
+      }),
+    );
+    const { result } = renderHook(useCoords, { wrapper });
+    await waitFor(() => {
+      const { isError, error } = result.current;
+      expect(isError).toEqual(true);
+      expect(error?.message).toEqual("could not do the thing");
     });
   });
 });

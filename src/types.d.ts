@@ -3,7 +3,13 @@ type Coordinate = {
   longitude: number;
 };
 
-type CoordinatesResponseDto = { Coords: Record<string, Coordinate[]> };
+type CoordinatesSuccessResponseDto = { Coords: Record<string, Coordinate[]> };
+
+type CoordinatesFailureResponseDto = {
+  code: string | number; // e.g. 500 or "unknown"
+  message: string;
+  details: unknown | null;
+};
 
 type Area = {
   name: string;
