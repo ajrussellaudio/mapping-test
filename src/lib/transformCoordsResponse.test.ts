@@ -17,17 +17,8 @@ describe("transformCoordsResponse", () => {
           { latitude: 0, longitude: -10 },
         ],
       },
-    } satisfies CoordinatesResponseDto;
+    } satisfies CoordinatesSuccessResponseDto;
     const expected = [
-      {
-        name: "Wakanda",
-        coords: [
-          { latitude: 0, longitude: 0 },
-          { latitude: 0, longitude: 1 },
-          { latitude: 1, longitude: 1 },
-          { latitude: 1, longitude: 0 },
-        ],
-      },
       {
         name: "Latveria",
         coords: [
@@ -35,6 +26,15 @@ describe("transformCoordsResponse", () => {
           { latitude: -10, longitude: 0 },
           { latitude: 0, longitude: 0 },
           { latitude: 0, longitude: -10 },
+        ],
+      },
+      {
+        name: "Wakanda",
+        coords: [
+          { latitude: 0, longitude: 0 },
+          { latitude: 0, longitude: 1 },
+          { latitude: 1, longitude: 1 },
+          { latitude: 1, longitude: 0 },
         ],
       },
     ] satisfies Area[];
