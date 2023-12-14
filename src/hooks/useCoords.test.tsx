@@ -4,17 +4,17 @@ import { useCoords } from "./useCoords";
 import { server } from "../mocks/server";
 import { HttpResponse, http } from "msw";
 
-const client = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: false,
+const wrapper = ({ children }: { children: React.ReactNode }) => {
+  const client = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+      },
     },
-  },
-});
+  });
 
-const wrapper = ({ children }: { children: React.ReactNode }) => (
-  <QueryClientProvider client={client}>{children}</QueryClientProvider>
-);
+  return <QueryClientProvider client={client}>{children}</QueryClientProvider>;
+};
 
 describe("useCoords", () => {
   it("returns the coordinates", async () => {
@@ -55,7 +55,7 @@ describe("useCoords", () => {
             message: "could not do the thing",
             details: null,
           } satisfies CoordinatesFailureResponseDto,
-          { status: 404 },
+          { status: 500 },
         );
       }),
     );
