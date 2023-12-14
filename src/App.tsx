@@ -5,9 +5,11 @@ const client = new QueryClient();
 
 function App() {
   return (
-    <QueryClientProvider client={client}>
-      <Visualisation />
-    </QueryClientProvider>
+    <>
+      <QueryClientProvider client={client}>
+        <Visualisation />
+      </QueryClientProvider>
+    </>
   );
 }
 

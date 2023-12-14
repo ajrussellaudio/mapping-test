@@ -1,5 +1,5 @@
-import { Visualisation } from "./Visualisation";
 import { useCoords } from "../../hooks/useCoords";
+import { Visualisation } from "./Visualisation";
 
 export function VisualisationContainer() {
   const { data, isLoading, isError, error } = useCoords();

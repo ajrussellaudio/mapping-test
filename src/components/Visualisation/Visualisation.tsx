@@ -1,7 +1,22 @@
-export type VisualisationProps = {
+import { Viewer, Entity, PolygonGraphics, Camera, PointGraphics } from "resium";
+import { getCentre, getColor, getPositions } from "./utils";
+
+type VisualisationProps = {
   areas?: Area[];
 };
 
 export function Visualisation({ areas = [] }: VisualisationProps) {
-  return <pre style={{ whiteSpace: "pre-wrap" }}>{JSON.stringify(areas, null, 2)}</pre>;
+  return (
+    <Viewer full>
+      {areas?.map((area, i) => {
+        return (
+          <Entity key={area.name} position={getCentre(area)}>
+            <PointGraphics pixelSize={10} />
+            <PolygonGraphics hierarchy={getPositions(area)} material={getColor(i, areas.length)} />
+          </Entity>
+        );
+      })}
+      <Camera />
+    </Viewer>
+  );
 }
